@@ -4,29 +4,59 @@ import type { ChartOptions } from 'src/components/chart';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
 import { useTheme } from '@mui/material/styles';
 
 import { fNumber, fPercent, fShortenNumber } from 'src/utils/format-number';
 
 import { varAlpha, bgGradient } from 'src/theme/styles';
-
+import Tooltip from '@mui/material/Tooltip';
 import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
 import { Chart, useChart } from 'src/components/chart';
 
 // ----------------------------------------------------------------------
 
+// Новый тип для временных статусов
+export type TimeStatus = {
+    time: string; // Например, "14:30"
+    status: 'healthy' | 'unhealthy' | 'degraded' | 'unknown';
+};
+
+
+
+
+type ChipColor = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'default';
+const statusColorMapping: Record<'healthy' | 'unhealthy' | 'degraded' | 'unknown', ChipColor> = {
+    healthy: 'success',   // зеленый
+    unhealthy: 'error',  // желтый
+    degraded: 'warning',     // красный
+    unknown: 'default',    // серый
+};
+
+const getStatusBackground = (status: 'healthy' | 'unhealthy' | 'degraded' | 'unknown', theme: any): string => {
+    const chipColor = statusColorMapping[status];
+    // Если для Chip используется "default", возвращаем серый цвет из темы
+    if (chipColor === 'default') {
+        return theme.palette.grey[500];
+    }
+    return theme.palette[chipColor].main;
+};
+
+
+
 type Props = CardProps & {
-  title: string;
-  total: number;
-  percent: number;
-  color?: ColorType;
-  icon: React.ReactNode;
-  chart: {
-    series: number[];
-    categories: string[];
-    options?: ChartOptions;
-  };
+    title: string;
+    total: number;
+    status: 'healthy' | 'unhealthy' | 'degraded' | 'unknown';
+    color?: ColorType;
+    icon: React.ReactNode;
+    chart: {
+        series: number[];
+        categories: string[];
+        options?: ChartOptions;
+    };
+    timeline?: TimeStatus[]; // timeline передается отдельно
 };
 
 export function AnalyticsWidgetSummary({
@@ -34,9 +64,10 @@ export function AnalyticsWidgetSummary({
   title,
   total,
   chart,
-  percent,
+  status,
   color = 'primary',
   sx,
+  timeline,
   ...other
 }: Props) {
   const theme = useTheme();
@@ -61,24 +92,7 @@ export function AnalyticsWidgetSummary({
     ...chart.options,
   });
 
-  const renderTrending = (
-    <Box
-      sx={{
-        top: 16,
-        gap: 0.5,
-        right: 16,
-        display: 'flex',
-        position: 'absolute',
-        alignItems: 'center',
-      }}
-    >
-      <Iconify width={20} icon={percent < 0 ? 'eva:trending-down-fill' : 'eva:trending-up-fill'} />
-      <Box component="span" sx={{ typography: 'subtitle2' }}>
-        {percent > 0 && '+'}
-        {fPercent(percent)}
-      </Box>
-    </Box>
-  );
+
 
   return (
     <Card
@@ -97,7 +111,9 @@ export function AnalyticsWidgetSummary({
     >
       <Box sx={{ width: 48, height: 48, mb: 3 }}>{icon}</Box>
 
-      {renderTrending}
+        <Box sx={{ position: 'absolute', top: 16, right: 16 }}>
+            <Chip label={status.toUpperCase()} color={statusColorMapping[status]} />
+        </Box>
 
       <Box
         sx={{
@@ -116,11 +132,28 @@ export function AnalyticsWidgetSummary({
           type="line"
           series={[{ data: chart.series }]}
           options={chartOptions}
-          width={84}
+          width={184}
           height={56}
         />
       </Box>
 
+        {/* Рендерим timeline, если он передан */}
+        {timeline && timeline.length > 0 && (
+            <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center', gap: 1 }}>
+                {timeline.map((item: TimeStatus, index: number) => (
+                    <Tooltip key={index} title={`${item.time}: ${item.status}`}>
+                        <Box
+                            sx={{
+                                width: 10,
+                                height: 10,
+                                borderRadius: '50%',
+                                bgcolor: getStatusBackground(item.status, theme),
+                            }}
+                        />
+                    </Tooltip>
+                ))}
+            </Box>
+        )}
       <SvgColor
         src="/assets/background/shape-square.svg"
         sx={{

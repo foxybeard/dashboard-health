@@ -20,65 +20,248 @@ export function OverviewAnalyticsView() {
   return (
     <DashboardContent maxWidth="xl">
       <Typography variant="h4" sx={{ mb: { xs: 3, md: 5 } }}>
-        Hi, Welcome back 👋
+        Core Domain Services - synthetic health dashboard
       </Typography>
 
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
           <AnalyticsWidgetSummary
-            title="Weekly sales"
-            percent={2.6}
+            title="Person Profile"
+            color="success"
+            status="healthy"
             total={714000}
-            icon={<img alt="icon" src="/assets/icons/glass/ic-glass-bag.svg" />}
+            icon={<img alt="icon" src="https://www.svgrepo.com/download/483839/person-border.svg" />}
             chart={{
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-              series: [22, 8, 35, 50, 82, 84, 77, 12],
+              categories: ['12-00', '13-00', '14-00', '15-00', '16-00', '17-00', '18-00', '19-00'],
+              series: [200,215, 230, 500, 1150, 100, 120, 200],
             }}
+            timeline={[
+                { time: '05:00', status: 'healthy' },
+                { time: '06:00', status: 'healthy' },
+                { time: '07:00', status: 'healthy' },
+                { time: '08:00', status: 'healthy' },
+                { time: '09:00', status: 'healthy' },
+                { time: '10:00', status: 'degraded' },
+                { time: '11:00', status: 'unhealthy' },
+                { time: '12:00', status: 'healthy' },
+                { time: '13:00', status: 'unknown' },
+            ]}
           />
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
           <AnalyticsWidgetSummary
-            title="New users"
-            percent={-0.1}
+            title="P2P transfer"
+            status="healthy"
             total={1352831}
-            color="secondary"
-            icon={<img alt="icon" src="/assets/icons/glass/ic-glass-users.svg" />}
+            color="success"
+            icon={<img alt="icon" src="https://www.svgrepo.com/download/519837/transfer.svg" />}
             chart={{
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
               series: [56, 47, 40, 62, 73, 30, 23, 54],
             }}
+            timeline={[
+                { time: '05:00', status: 'healthy' },
+                { time: '06:00', status: 'healthy' },
+                { time: '07:00', status: 'healthy' },
+                { time: '08:00', status: 'healthy' },
+                { time: '09:00', status: 'healthy' },
+                { time: '10:00', status: 'degraded' },
+                { time: '11:00', status: 'healthy' },
+                { time: '12:00', status: 'healthy' },
+                { time: '13:00', status: 'healthy' },
+            ]}
           />
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
           <AnalyticsWidgetSummary
-            title="Purchase orders"
-            percent={2.8}
+            title="Local Transfer"
+            status="degraded"
             total={1723315}
             color="warning"
-            icon={<img alt="icon" src="/assets/icons/glass/ic-glass-buy.svg" />}
+            icon={<img alt="icon" src="https://www.svgrepo.com/download/470553/transfer.svg" />}
             chart={{
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
               series: [40, 70, 50, 28, 70, 75, 7, 64],
             }}
+
+            timeline={[
+                { time: '05:00', status: 'healthy' },
+                { time: '06:00', status: 'healthy' },
+                { time: '07:00', status: 'healthy' },
+                { time: '08:00', status: 'healthy' },
+                { time: '09:00', status: 'unhealthy' },
+                { time: '10:00', status: 'degraded' },
+                { time: '11:00', status: 'healthy' },
+                { time: '12:00', status: 'healthy' },
+                { time: '13:00', status: 'healthy' },
+            ]}
+
           />
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
           <AnalyticsWidgetSummary
-            title="Messages"
-            percent={3.6}
+            title="Account"
+            status="unhealthy"
             total={234}
             color="error"
-            icon={<img alt="icon" src="/assets/icons/glass/ic-glass-message.svg" />}
+            icon={<img alt="icon" src="https://www.svgrepo.com/download/493990/account-management.svg" />}
             chart={{
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
               series: [56, 30, 23, 54, 47, 40, 62, 73],
             }}
+            timeline={[
+                { time: '05:00', status: 'healthy' },
+                { time: '06:00', status: 'healthy' },
+                { time: '07:00', status: 'healthy' },
+                { time: '08:00', status: 'healthy' },
+                { time: '09:00', status: 'unhealthy' },
+                { time: '10:00', status: 'degraded' },
+                { time: '11:00', status: 'healthy' },
+                { time: '12:00', status: 'healthy' },
+                { time: '13:00', status: 'healthy' },
+                { time: '14:00', status: 'unhealthy' },
+            ]}
           />
         </Grid>
 
+          <Grid xs={12} sm={6} md={3}>
+              <AnalyticsWidgetSummary
+                  title="Account"
+                  status="unhealthy"
+                  total={234}
+                  color="error"
+                  icon={<img alt="icon" src="https://www.svgrepo.com/download/493990/account-management.svg" />}
+                  chart={{
+                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                      series: [56, 30, 23, 54, 47, 40, 62, 73],
+                  }}
+                  timeline={[
+                      { time: '05:00', status: 'healthy' },
+                      { time: '06:00', status: 'healthy' },
+                      { time: '07:00', status: 'healthy' },
+                      { time: '08:00', status: 'healthy' },
+                      { time: '09:00', status: 'unhealthy' },
+                      { time: '10:00', status: 'degraded' },
+                      { time: '11:00', status: 'healthy' },
+                      { time: '12:00', status: 'healthy' },
+                      { time: '13:00', status: 'healthy' },
+                      { time: '14:00', status: 'unhealthy' },
+                  ]}
+              />
+          </Grid>
+
+          <Grid xs={12} sm={6} md={3}>
+              <AnalyticsWidgetSummary
+                  title="Account"
+                  status="unhealthy"
+                  total={234}
+                  color="error"
+                  icon={<img alt="icon" src="https://www.svgrepo.com/download/493990/account-management.svg" />}
+                  chart={{
+                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                      series: [56, 30, 23, 54, 47, 40, 62, 73],
+                  }}
+                  timeline={[
+                      { time: '05:00', status: 'healthy' },
+                      { time: '06:00', status: 'healthy' },
+                      { time: '07:00', status: 'healthy' },
+                      { time: '08:00', status: 'healthy' },
+                      { time: '09:00', status: 'unhealthy' },
+                      { time: '10:00', status: 'degraded' },
+                      { time: '11:00', status: 'healthy' },
+                      { time: '12:00', status: 'healthy' },
+                      { time: '13:00', status: 'healthy' },
+                      { time: '14:00', status: 'unhealthy' },
+                  ]}
+              />
+          </Grid>
+
+          <Grid xs={12} sm={6} md={3}>
+              <AnalyticsWidgetSummary
+                  title="Account"
+                  status="unhealthy"
+                  total={234}
+                  color="error"
+                  icon={<img alt="icon" src="https://www.svgrepo.com/download/493990/account-management.svg" />}
+                  chart={{
+                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                      series: [56, 30, 23, 54, 47, 40, 62, 73],
+                  }}
+                  timeline={[
+                      { time: '05:00', status: 'healthy' },
+                      { time: '06:00', status: 'healthy' },
+                      { time: '07:00', status: 'healthy' },
+                      { time: '08:00', status: 'healthy' },
+                      { time: '09:00', status: 'unhealthy' },
+                      { time: '10:00', status: 'degraded' },
+                      { time: '11:00', status: 'healthy' },
+                      { time: '12:00', status: 'healthy' },
+                      { time: '13:00', status: 'healthy' },
+                      { time: '14:00', status: 'unhealthy' },
+                  ]}
+              />
+          </Grid>
+
+          <Grid xs={12} sm={6} md={3}>
+              <AnalyticsWidgetSummary
+                  title="Account"
+                  status="unhealthy"
+                  total={234}
+                  color="error"
+                  icon={<img alt="icon" src="https://www.svgrepo.com/download/493990/account-management.svg" />}
+                  chart={{
+                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                      series: [56, 30, 23, 54, 47, 40, 62, 73],
+                  }}
+                  timeline={[
+                      { time: '05:00', status: 'healthy' },
+                      { time: '06:00', status: 'healthy' },
+                      { time: '07:00', status: 'healthy' },
+                      { time: '08:00', status: 'healthy' },
+                      { time: '09:00', status: 'unhealthy' },
+                      { time: '10:00', status: 'degraded' },
+                      { time: '11:00', status: 'healthy' },
+                      { time: '12:00', status: 'healthy' },
+                      { time: '13:00', status: 'healthy' },
+                      { time: '14:00', status: 'unhealthy' },
+                  ]}
+              />
+          </Grid>
+
+          <Grid xs={12} sm={6} md={3}>
+              <AnalyticsWidgetSummary
+                  title="Account"
+                  status="unhealthy"
+                  total={234}
+                  color="error"
+                  icon={<img alt="icon" src="https://www.svgrepo.com/download/493990/account-management.svg" />}
+                  chart={{
+                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                      series: [56, 30, 23, 54, 47, 40, 62, 73],
+                  }}
+                  timeline={[
+                      { time: '05:00', status: 'healthy' },
+                      { time: '06:00', status: 'healthy' },
+                      { time: '07:00', status: 'healthy' },
+                      { time: '08:00', status: 'healthy' },
+                      { time: '09:00', status: 'unhealthy' },
+                      { time: '10:00', status: 'degraded' },
+                      { time: '11:00', status: 'healthy' },
+                      { time: '12:00', status: 'healthy' },
+                      { time: '13:00', status: 'healthy' },
+                      { time: '14:00', status: 'unhealthy' },
+                  ]}
+              />
+          </Grid>
+
+          <Grid xs={12} md={6} lg={12}>
+              <AnalyticsOrderTimeline title="Order timeline" list={_timeline} />
+          </Grid>
+
+          {/*
         <Grid xs={12} md={6} lg={4}>
           <AnalyticsCurrentVisits
             title="Current visits"
@@ -92,6 +275,7 @@ export function OverviewAnalyticsView() {
             }}
           />
         </Grid>
+
 
         <Grid xs={12} md={6} lg={8}>
           <AnalyticsWebsiteVisits
@@ -139,9 +323,7 @@ export function OverviewAnalyticsView() {
           <AnalyticsNews title="News" list={_posts.slice(0, 5)} />
         </Grid>
 
-        <Grid xs={12} md={6} lg={4}>
-          <AnalyticsOrderTimeline title="Order timeline" list={_timeline} />
-        </Grid>
+
 
         <Grid xs={12} md={6} lg={4}>
           <AnalyticsTrafficBySite
@@ -158,7 +340,11 @@ export function OverviewAnalyticsView() {
         <Grid xs={12} md={6} lg={8}>
           <AnalyticsTasks title="Tasks" list={_tasks} />
         </Grid>
+               */}
+
       </Grid>
+
+
     </DashboardContent>
   );
 }

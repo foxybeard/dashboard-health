@@ -2,10 +2,10 @@
 
 export const _workspaces = [
   {
-    id: 'team-1',
-    name: 'Team 1',
+    id: 'cds',
+    name: 'Core Domain Services',
     logo: `/assets/icons/workspaces/logo-1.webp`,
-    plan: 'Free',
+    plan: 'T1',
   },
   {
     id: 'team-2',
