@@ -27,22 +27,22 @@ export type TimeStatus = {
 
 
 type ChipColor = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'default';
-const statusColorMapping: Record<'healthy' | 'unhealthy' | 'degraded' | 'unknown', ChipColor> = {
+const statusColorMapping: Record<'healthy' | 'unhealthy' | 'degraded' | 'unknown', 'success' | 'error' | 'warning' | 'info'> = {
     healthy: 'success',   // зеленый
-    unhealthy: 'error',  // желтый
-    degraded: 'warning',     // красный
-    unknown: 'default',    // серый
+    unhealthy: 'error',   // красный
+    degraded: 'warning',  // желтый
+    unknown: 'info',      // вместо "default" используем "info"
 };
 
-const getStatusBackground = (status: 'healthy' | 'unhealthy' | 'degraded' | 'unknown', theme: any): string => {
-    const chipColor = statusColorMapping[status];
-    // Если для Chip используется "default", возвращаем серый цвет из темы
-    if (chipColor === 'default') {
+const getStatusBackground = (
+    status: 'healthy' | 'unhealthy' | 'degraded' | 'unknown',
+    theme: any
+): string => {
+    if (status === 'unknown') {
         return theme.palette.grey[500];
     }
-    return theme.palette[chipColor].main;
+    return theme.palette[statusColorMapping[status]].main;
 };
-
 
 
 type Props = CardProps & {
