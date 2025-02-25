@@ -30,6 +30,8 @@ import dayjs, { Dayjs } from 'dayjs';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { AnalyticsWidgetSummary } from './analytics-widget-summary';
+
 
 // Тип для отдельного чека (проверки состояния компонента)
 export type Check = {
@@ -186,9 +188,46 @@ export const DetailedServiceModal: React.FC<DetailedServiceModalProps> = ({ open
                     </Typography>
                 </Paper>
 
+                <Box sx={{ mb: 3 }}>
+                    <AnalyticsWidgetSummary
+                        title="Mock Service Card"
+                        total={1234567}  // Пример mock значения
+                        status="healthy"
+                        color="success"
+                        icon={<img alt="icon" src="https://www.svgrepo.com/download/483839/person-border.svg" />}
+                        chart={{
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                            series: [56, 30, 23, 54, 47, 40, 62, 73, 54, 47, 40, 62, 73],
+                            options: {}
+                        }}
+                        timeline={[
+                            { time: '09:00', status: 'healthy' },
+                            { time: '10:00', status: 'degraded' },
+                            { time: '11:00', status: 'unhealthy' },
+                            { time: '12:00', status: 'healthy' },
+                            { time: '13:00', status: 'unknown' },
+                            { time: '09:00', status: 'healthy' },
+                            { time: '10:00', status: 'degraded' },
+                            { time: '11:00', status: 'unhealthy' },
+                            { time: '12:00', status: 'healthy' },
+                            { time: '13:00', status: 'unknown' },
+                            { time: '09:00', status: 'healthy' },
+                            { time: '10:00', status: 'degraded' },
+                            { time: '11:00', status: 'unhealthy' },
+                            { time: '12:00', status: 'healthy' },
+                            { time: '13:00', status: 'unknown' },
+                            { time: '09:00', status: 'healthy' },
+                            { time: '10:00', status: 'degraded' },
+                            { time: '11:00', status: 'unhealthy' },
+                            { time: '12:00', status: 'healthy' },
+                            { time: '13:00', status: 'unknown' },
+                        ]}
+                    />
+                </Box>
+
                 {/* Check timeline */}
                 <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 500 }}>
-                    Health Check Timeline
+                    Health Checks for NOW
                 </Typography>
                 <Timeline
                     sx={{
